@@ -1,5 +1,6 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
 
 function FullName() {
   return (
@@ -10,7 +11,7 @@ function FullName() {
       <Input
         type="name"
         id="name"
-        className="w-1/2 container"
+        className="w-1/2 "
         placeholder="Jack Martinez"
       />
     </div>
@@ -38,16 +39,29 @@ function Mobile() {
       <Label htmlFor="number" className="w-30">
         Phone Number :
       </Label>
-      <Input id="number" className="w-1/2 container" placeholder="9999912" />
+      <Input id="number" className="w-1/2 " placeholder="9999912" />
     </div>
   );
 }
+
+function ClearAll() {
+  return (
+    <Button
+      className="w-25 hover:cursor-pointer hover:bg-red-400"
+      onClick={() => console.log("Cleared")}
+    >
+      Clear All
+    </Button>
+  );
+}
+
 function PersonalDetails() {
   return (
     <div className="flex flex-col gap-4">
       <FullName />
       <Email />
       <Mobile />
+      <ClearAll />
     </div>
   );
 }

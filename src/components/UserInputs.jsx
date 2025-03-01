@@ -6,6 +6,8 @@ import {
 } from "@/components/ui/accordion";
 
 import PersonalDetails from "./InputData/PersonalDetails";
+import PorfileSummary from "./InputData/ProfileSummary";
+import Experience from "./InputData/Experience";
 function UserInputs() {
   return (
     <Accordion
@@ -26,8 +28,7 @@ function UserInputs() {
           Profile Summary
         </AccordionTrigger>
         <AccordionContent>
-          Yes. It comes with default styles that matches the other
-          components&apos; aesthetic.
+          <PorfileSummary />
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="item-3" className="p-3 pl-5">
@@ -35,7 +36,7 @@ function UserInputs() {
           Experience
         </AccordionTrigger>
         <AccordionContent>
-          Yes. It's animated by default, but you can disable it if you prefer.
+          <Experience />
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="item-4" className="p-3 pl-5">

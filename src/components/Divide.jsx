@@ -10,8 +10,9 @@ export default function Test() {
       <div className="m-5 flex-2 flex gap-4 flex-col justify-start items-center">
         <PDFViewer
           style={{
-            width: "595px",
-            height: "842px",
+            width: "550px",
+            height: "780px",
+            border: "none",
           }}
           showToolbar={false}
         >
