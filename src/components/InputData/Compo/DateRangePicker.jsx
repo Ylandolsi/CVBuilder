@@ -12,12 +12,14 @@ import {
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
 
+import { useEffect } from "react";
 export function DatePickerWithRange(props) {
-  const { className } = props;
-  const [date, setDate] = React.useState({
-    from: new Date(2022, 0, 20),
-    to: addDays(new Date(2022, 0, 20), 20),
-  });
+  const { className, ModifyFunction, date, exp, setDate } = props;
+  useEffect(() => {
+    console.log(date.from, date.to);
+    console.log({ ...exp, from: date.from, to: date.to });
+    ModifyFunction({ ...exp, from: date.from, to: date.to });
+  }, [date]);
 
   return (
     <div className={cn("grid gap-2", className)}>

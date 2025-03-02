@@ -12,6 +12,8 @@ import {
   Image,
 } from "@react-pdf/renderer";
 import ProfileSummary from "./InputData/ProfileSummary";
+import { Content } from "@radix-ui/react-accordion";
+import Experience from "./InputData/Experience";
 
 // Create styles
 const styles = StyleSheet.create({
@@ -59,23 +61,53 @@ const styles = StyleSheet.create({
     fontSize: 13,
     textAlign: "center",
   },
+  content: {
+    fontSize: 12,
+    marginLeft: 4,
+    marginTop: 4,
+  },
+
+  ExperienceHeader: {
+    marginTop: 10,
+    display: "flex",
+    gap: "5",
+    flexDirection: "row",
+    alignItems: "center",
+  },
 });
 
-function Cv({ PersonalDetails, ProfileSummary }) {
+function Cv({ PersonalDetails, ProfileSummary, Experiences }) {
+  // Provide default values if props are undefined
+  const pd = PersonalDetails || {
+    name: "Name",
+    phone: "Phone",
+    email: "Email",
+  };
+  const ps = ProfileSummary || { role: "Role", summary: "Summary" };
+  const exps = Experiences || [];
+
+  // format date to string
+  const formatDate = (date) => {
+    if (date instanceof Date) {
+      return date.toLocaleDateString();
+    }
+    return date;
+  };
+
   return (
     <Document>
       <Page size="a4" style={styles.page}>
         <View style={styles.title}>
-          <Text style={styles.line_under}>{PersonalDetails.name}</Text>
+          <Text style={styles.line_under}>{pd.name}</Text>
         </View>
         <View style={styles.title}>
-          <Text style={styles.Role}> {ProfileSummary.role} </Text>
+          <Text style={styles.Role}> {ps.role} </Text>
         </View>
         <View style={styles.center}>
-          <Text>{PersonalDetails.phone}</Text>
+          <Text>{pd.phone}</Text>
         </View>
         <View style={styles.center}>
-          <Text>{PersonalDetails.email}</Text>
+          <Text>{pd.email}</Text>
         </View>
 
         <View style={styles.section}>
@@ -89,8 +121,7 @@ function Cv({ PersonalDetails, ProfileSummary }) {
             <Text style={styles.line_under}>Profile Summary </Text>
           </View>
           <Text style={{ fontSize: 12, marginLeft: 4, marginTop: 4 }}>
-            {" "}
-            {ProfileSummary.summary}
+            {ps.summary}
           </Text>
         </View>
 
@@ -104,6 +135,40 @@ function Cv({ PersonalDetails, ProfileSummary }) {
             />
             <Text style={styles.line_under}>Experience</Text>
           </View>
+          {exps.map((exp, index) => (
+            <View style={styles.content} key={exp.id || index}>
+              <View style={styles.ExperienceHeader}>
+                <Text
+                  style={{
+                    fontFamily: "Helvetica-Bold",
+                    fontSize: 16,
+                    fontWeight: 800,
+                  }}
+                >
+                  {exp.position}
+                </Text>
+                <Text
+                  style={{
+                    fontFamily: "Helvetica-Bold",
+                    fontSize: 13,
+                    fontWeight: 600,
+                    fontStyle: "italic",
+                    marginLeft: 10,
+                  }}
+                >
+                  {exp.name}
+                </Text>
+                <View>
+                  <Text>
+                    ({formatDate(exp.from)} - {formatDate(exp.to)})
+                  </Text>
+                </View>
+              </View>
+              <Text style={{ ...styles.content, marginTop: 10 }}>
+                {exp.details}
+              </Text>
+            </View>
+          ))}
         </View>
       </Page>
     </Document>
