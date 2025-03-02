@@ -8,6 +8,7 @@ import {
 import PersonalDetails from "./InputData/PersonalDetails";
 import PorfileSummary from "./InputData/ProfileSummary";
 import Experience from "./InputData/Experience";
+import Education from "./InputData/Education";
 
 function UserInputs() {
   return (
@@ -45,7 +46,7 @@ function UserInputs() {
           Education Details
         </AccordionTrigger>
         <AccordionContent>
-          Yes. It's animated by default, but you can disable it if you prefer.
+          <Education />
         </AccordionContent>
       </AccordionItem>
     </Accordion>

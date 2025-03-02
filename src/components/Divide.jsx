@@ -2,6 +2,7 @@ import React from "react";
 import { PersonalDetailContextProvider } from "./contexts/PersonalDetailsContext";
 import { ProfileSummaryContextProvider } from "./contexts/ProfileSummaryContext";
 import { ExperienceContextProvider } from "./contexts/ExperiencesContext";
+import { EducationContextProvider } from "./contexts/EducationContext";
 import DivideAfterContext from "./Divide2";
 
 export default function Test() {
@@ -9,7 +10,9 @@ export default function Test() {
     <PersonalDetailContextProvider>
       <ProfileSummaryContextProvider>
         <ExperienceContextProvider>
-          <DivideAfterContext />
+          <EducationContextProvider>
+            <DivideAfterContext />
+          </EducationContextProvider>
         </ExperienceContextProvider>
       </ProfileSummaryContextProvider>
     </PersonalDetailContextProvider>

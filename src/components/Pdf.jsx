@@ -74,9 +74,16 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
   },
+  EducationHeader: {
+    marginTop: 10,
+    display: "flex",
+    gap: "5",
+    flexDirection: "column",
+    alignItems: "flex-start",
+  },
 });
 
-function Cv({ PersonalDetails, ProfileSummary, Experiences }) {
+function Cv({ PersonalDetails, ProfileSummary, Experiences, Education }) {
   // Provide default values if props are undefined
   const pd = PersonalDetails || {
     name: "Name",
@@ -85,6 +92,11 @@ function Cv({ PersonalDetails, ProfileSummary, Experiences }) {
   };
   const ps = ProfileSummary || { role: "Role", summary: "Summary" };
   const exps = Experiences || [];
+
+  const eds = Education || [];
+  console.log("education log ");
+  console.log(eds);
+  console.log(Education);
 
   // format date to string
   const formatDate = (date) => {
@@ -167,6 +179,42 @@ function Cv({ PersonalDetails, ProfileSummary, Experiences }) {
               <Text style={{ ...styles.content, marginTop: 10 }}>
                 {exp.details}
               </Text>
+            </View>
+          ))}
+        </View>
+        <View style={styles.section}>
+          <View style={styles.same_line}>
+            <Image
+              src={
+                "https://img.icons8.com/?size=100&id=9431&format=png&color=000000"
+              }
+              style={{ width: 20, height: 20 }}
+            />
+            <Text style={styles.line_under}>Education</Text>
+          </View>
+          {eds.map((ed, index) => (
+            <View style={styles.content} key={ed.id || index}>
+              <View style={styles.EducationHeader}>
+                <Text
+                  style={{
+                    fontFamily: "Helvetica-Bold",
+                    fontSize: 16,
+                    fontWeight: 800,
+                  }}
+                >
+                  {ed.degree}
+                </Text>
+                <Text
+                  style={{
+                    fontSize: 13,
+                    fontWeight: 600,
+                    fontStyle: "italic",
+                  }}
+                >
+                  {ed.name} ({formatDate(ed.from)} - {formatDate(ed.to)}){" "}
+                  {ed.location}
+                </Text>
+              </View>
             </View>
           ))}
         </View>
