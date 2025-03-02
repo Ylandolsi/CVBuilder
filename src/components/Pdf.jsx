@@ -1,4 +1,8 @@
 import React from "react";
+
+import { PersonalDetailsContext } from "./contexts/PersonalDetailsContext";
+import { useContext } from "react";
+
 import {
   Page,
   Text,
@@ -7,8 +11,7 @@ import {
   StyleSheet,
   Image,
 } from "@react-pdf/renderer";
-
-import { IoImageSharp, IoPerson } from "react-icons/io5";
+import ProfileSummary from "./InputData/ProfileSummary";
 
 // Create styles
 const styles = StyleSheet.create({
@@ -39,7 +42,6 @@ const styles = StyleSheet.create({
     fontFamily: "Helvetica",
   },
   Role: {
-    display: "none",
     fontSize: 20,
     textAlign: "center",
     marginBottom: 10,
@@ -59,47 +61,53 @@ const styles = StyleSheet.create({
   },
 });
 
-const Cv = () => (
-  <Document>
-    <Page size="a4" style={styles.page}>
-      <View style={styles.title}>
-        <Text style={styles.line_under}>Mohamed Yassine </Text>
-      </View>
-      <View style={styles.title}>
-        <Text style={styles.Role}></Text>
-      </View>
-      <View style={styles.center}>
-        <Text>999999</Text>
-      </View>
-      <View style={styles.center}>
-        <Text>yess@</Text>
-      </View>
-
-      <View style={styles.section}>
-        <View style={styles.same_line}>
-          <Image
-            src={
-              "https://img.icons8.com/?size=100&id=Cssf43cjx2fu&format=png&color=000000"
-            }
-            style={{ width: 20, height: 20, display: "inline-block" }}
-          />
-          <Text style={styles.line_under}>Profile Summary</Text>
+function Cv({ PersonalDetails, ProfileSummary }) {
+  return (
+    <Document>
+      <Page size="a4" style={styles.page}>
+        <View style={styles.title}>
+          <Text style={styles.line_under}>{PersonalDetails.name}</Text>
         </View>
-      </View>
-
-      <View style={styles.section}>
-        <View style={styles.same_line}>
-          <Image
-            src={
-              "https://img.icons8.com/?size=100&id=60643&format=png&color=000000"
-            }
-            style={{ width: 20, height: 20 }}
-          />
-          <Text style={styles.line_under}>Experience</Text>
+        <View style={styles.title}>
+          <Text style={styles.Role}> {ProfileSummary.role} </Text>
         </View>
-      </View>
-    </Page>
-  </Document>
-);
+        <View style={styles.center}>
+          <Text>{PersonalDetails.phone}</Text>
+        </View>
+        <View style={styles.center}>
+          <Text>{PersonalDetails.email}</Text>
+        </View>
+
+        <View style={styles.section}>
+          <View style={styles.same_line}>
+            <Image
+              src={
+                "https://img.icons8.com/?size=100&id=Cssf43cjx2fu&format=png&color=000000"
+              }
+              style={{ width: 20, height: 20, display: "inline-block" }}
+            />
+            <Text style={styles.line_under}>Profile Summary </Text>
+          </View>
+          <Text style={{ fontSize: 12, marginLeft: 4, marginTop: 4 }}>
+            {" "}
+            {ProfileSummary.summary}
+          </Text>
+        </View>
+
+        <View style={styles.section}>
+          <View style={styles.same_line}>
+            <Image
+              src={
+                "https://img.icons8.com/?size=100&id=60643&format=png&color=000000"
+              }
+              style={{ width: 20, height: 20 }}
+            />
+            <Text style={styles.line_under}>Experience</Text>
+          </View>
+        </View>
+      </Page>
+    </Document>
+  );
+}
 
 export default Cv;

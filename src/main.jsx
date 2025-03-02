@@ -7,7 +7,7 @@ import Divide from "./components/Divide";
 import React from "react";
 import ReactDOM from "react-dom";
 import { PDFViewer, PDFDownloadLink } from "@react-pdf/renderer";
-import MyDocument from "./components/PdfTest";
+import MyDocument from "./PdfTest";
 document.getElementById("root").style.height = "100vh";
 
 createRoot(document.getElementById("root")).render(

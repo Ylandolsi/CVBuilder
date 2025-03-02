@@ -1,36 +1,15 @@
-import Cv from "./Pdf";
-import UserInputs from "./UserInputs";
-import { PDFViewer, PDFDownloadLink } from "@react-pdf/renderer";
+import React from "react";
+import { PersonalDetailContextProvider } from "./contexts/PersonalDetailsContext";
+import { ProfileSummaryContextProvider } from "./contexts/ProfileSummaryContext";
+import DivideAfterContext from "./Divide2";
+
 export default function Test() {
   return (
-    <div className="flex h-screen">
-      <div className="m-5 flex-3 overflow-auto">
-        <UserInputs />
-      </div>
-      <div className="m-5 flex-2 flex gap-4 flex-col justify-start items-center">
-        <PDFViewer
-          style={{
-            width: "550px",
-            height: "780px",
-            border: "none",
-          }}
-          showToolbar={false}
-        >
-          <Cv />
-        </PDFViewer>
-        <PDFDownloadLink document={<Cv />} fileName="myCV.pdf">
-          {({ loading }) =>
-            loading ? (
-              "Loading cv..."
-            ) : (
-              <button className="bg-gray-400 p-4 rounded-2xl">
-                Download CV
-              </button>
-            )
-          }
-        </PDFDownloadLink>
-      </div>
-    </div>
+    <PersonalDetailContextProvider>
+      <ProfileSummaryContextProvider>
+        <DivideAfterContext />
+      </ProfileSummaryContextProvider>
+    </PersonalDetailContextProvider>
   );
 }
 // When deciding between inline styles (`style` prop) and Tailwind classes:

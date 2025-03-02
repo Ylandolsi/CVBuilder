@@ -8,6 +8,7 @@ import {
 import PersonalDetails from "./InputData/PersonalDetails";
 import PorfileSummary from "./InputData/ProfileSummary";
 import Experience from "./InputData/Experience";
+
 function UserInputs() {
   return (
     <Accordion
