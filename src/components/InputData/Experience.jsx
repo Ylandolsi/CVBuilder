@@ -49,7 +49,7 @@ function Details({ exp, ModifyFunction }) {
       </Label>
       <Textarea
         placeholder="Details"
-        className="w-1/3"
+        className="w-[80%]"
         value={exp.details}
         onChange={(e) => ModifyFunction({ ...exp, details: e.target.value })}
       />
@@ -95,8 +95,6 @@ function Duration({ exp, ModifyFunction }) {
   });
 
   useEffect(() => {
-    console.log(date.from, date.to);
-    console.log({ ...exp, from: date.from, to: date.to });
     ModifyFunction({ ...exp, from: date.from, to: date.to });
   }, [date]);
 

@@ -74,30 +74,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
   },
-  EducationHeader: {
-    marginTop: 10,
-    display: "flex",
-    gap: "5",
-    flexDirection: "column",
-    alignItems: "flex-start",
-  },
 });
 
-function Cv({ PersonalDetails, ProfileSummary, Experiences, Education }) {
-  // Provide default values if props are undefined
-  const pd = PersonalDetails || {
-    name: "Name",
-    phone: "Phone",
-    email: "Email",
-  };
-  const ps = ProfileSummary || { role: "Role", summary: "Summary" };
-  const exps = Experiences || [];
-
-  const eds = Education || [];
-  console.log("education log ");
-  console.log(eds);
-  console.log(Education);
-
+function Cv({ PersonalDetails, ProfileSummary, Experiences }) {
   // format date to string
   const formatDate = (date) => {
     if (date instanceof Date) {
@@ -110,16 +89,16 @@ function Cv({ PersonalDetails, ProfileSummary, Experiences, Education }) {
     <Document>
       <Page size="a4" style={styles.page}>
         <View style={styles.title}>
-          <Text style={styles.line_under}>{pd.name}</Text>
+          <Text style={styles.line_under}>{PersonalDetails.name}</Text>
         </View>
         <View style={styles.title}>
-          <Text style={styles.Role}> {ps.role} </Text>
+          <Text style={styles.Role}> {ProfileSummary.role} </Text>
         </View>
         <View style={styles.center}>
-          <Text>{pd.phone}</Text>
+          <Text>{PersonalDetails.phone}</Text>
         </View>
         <View style={styles.center}>
-          <Text>{pd.email}</Text>
+          <Text>{PersonalDetails.email}</Text>
         </View>
 
         <View style={styles.section}>
@@ -133,7 +112,8 @@ function Cv({ PersonalDetails, ProfileSummary, Experiences, Education }) {
             <Text style={styles.line_under}>Profile Summary </Text>
           </View>
           <Text style={{ fontSize: 12, marginLeft: 4, marginTop: 4 }}>
-            {ps.summary}
+            {" "}
+            {ProfileSummary.summary}
           </Text>
         </View>
 
@@ -147,8 +127,8 @@ function Cv({ PersonalDetails, ProfileSummary, Experiences, Education }) {
             />
             <Text style={styles.line_under}>Experience</Text>
           </View>
-          {exps.map((exp, index) => (
-            <View style={styles.content} key={exp.id || index}>
+          {Experiences.map((exp) => (
+            <View style={styles.content} key={exp.id}>
               <View style={styles.ExperienceHeader}>
                 <Text
                   style={{
@@ -179,42 +159,6 @@ function Cv({ PersonalDetails, ProfileSummary, Experiences, Education }) {
               <Text style={{ ...styles.content, marginTop: 10 }}>
                 {exp.details}
               </Text>
-            </View>
-          ))}
-        </View>
-        <View style={styles.section}>
-          <View style={styles.same_line}>
-            <Image
-              src={
-                "https://img.icons8.com/?size=100&id=9431&format=png&color=000000"
-              }
-              style={{ width: 20, height: 20 }}
-            />
-            <Text style={styles.line_under}>Education</Text>
-          </View>
-          {eds.map((ed, index) => (
-            <View style={styles.content} key={ed.id || index}>
-              <View style={styles.EducationHeader}>
-                <Text
-                  style={{
-                    fontFamily: "Helvetica-Bold",
-                    fontSize: 16,
-                    fontWeight: 800,
-                  }}
-                >
-                  {ed.degree}
-                </Text>
-                <Text
-                  style={{
-                    fontSize: 13,
-                    fontWeight: 600,
-                    fontStyle: "italic",
-                  }}
-                >
-                  {ed.name} ({formatDate(ed.from)} - {formatDate(ed.to)}){" "}
-                  {ed.location}
-                </Text>
-              </View>
             </View>
           ))}
         </View>

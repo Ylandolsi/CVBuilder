@@ -46,18 +46,20 @@ function DivideAfterContext() {
   const { Education } = useContext(EducationContext);
 
   return (
-    <div className="flex h-screen">
-      <div className="m-5 flex-3 overflow-auto">
+    <div className="flex  lg:flex-row flex-col min-h-screen w-full ">
+      <div className="m-5 flex-grow lg:w-3/6 overflow-auto ">
         <UserInputs />
       </div>
-      <div className="m-5 flex-2 flex gap-4 flex-col justify-start items-center">
-        <div key={Experiences.length}>
-          <div key={Education.length}>
-            {console.log(Experiences.length)}
+      <div className="flex-3 lg:w-3/6 flex-shrink-0">
+        <div key={Experiences.length} className="h-full  ">
+          <div
+            key={Education.length}
+            className="m-5 flex flex-col justify-start items-center  h-full  "
+          >
             <PDFViewer
               style={{
-                width: "550px",
-                height: "780px",
+                width: "min(100%, 550px)",
+                height: "min(100vh, 780px)",
                 border: "none",
               }}
               showToolbar={false}
@@ -69,7 +71,9 @@ function DivideAfterContext() {
                 Education={Education}
               />
             </PDFViewer>
-            <DownloadButton />
+            <div className="mt-4">
+              <DownloadButton />
+            </div>
           </div>
         </div>
       </div>

@@ -94,8 +94,6 @@ function Duration({ ed, ModifyFunction }) {
   });
 
   useEffect(() => {
-    console.log(date.from, date.to);
-    console.log({ ...ed, from: date.from, to: date.to });
     ModifyFunction({ ...ed, from: date.from, to: date.to });
   }, [date]);
 
