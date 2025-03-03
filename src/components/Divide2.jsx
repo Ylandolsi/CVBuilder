@@ -32,7 +32,9 @@ function DownloadButton() {
         loading ? (
           "Loading cv..."
         ) : (
-          <button className="bg-gray-400 p-4 rounded-2xl">Download CV</button>
+          <button className="bg-gray-400 p-4 rounded-2xl hover:bg-black hover:cursor-pointer">
+            Download CV
+          </button>
         )
       }
     </PDFDownloadLink>
