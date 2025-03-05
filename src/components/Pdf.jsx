@@ -14,7 +14,7 @@ import {
 import ProfileSummary from "./InputData/ProfileSummary";
 import { Content } from "@radix-ui/react-accordion";
 import Experience from "./InputData/Experience";
-
+import Education from "./InputData/Education";
 // Create styles
 const styles = StyleSheet.create({
   page: {
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
   },
 });
 
-function Cv({ PersonalDetails, ProfileSummary, Experiences }) {
+function Cv({ PersonalDetails, ProfileSummary, Experiences, Education }) {
   // format date to string
   const formatDate = (date) => {
     if (date instanceof Date) {
@@ -162,9 +162,59 @@ function Cv({ PersonalDetails, ProfileSummary, Experiences }) {
             </View>
           ))}
         </View>
+        <View style={styles.section}>
+          <View style={styles.same_line}>
+            <Image
+              src={
+                "https://img.icons8.com/?size=100&id=38833&format=png&color=000000"
+              }
+              style={{ width: 20, height: 20 }}
+            />
+            <Text style={styles.line_under}>Education</Text>
+          </View>
+          {Education.map((ed) => (
+            <View style={styles.content} key={ed.id}>
+              <View style={styles.ExperienceHeader}>
+                <Text
+                  style={{
+                    fontFamily: "Helvetica-Bold",
+                    fontSize: 16,
+                    fontWeight: 800,
+                  }}
+                >
+                  {ed.name} -- {ed.location}
+                </Text>
+              </View>
+              <View>
+                <Text
+                  style={{
+                    fontFamily: "Helvetica-Bold",
+                    fontSize: 13,
+                    fontWeight: 400,
+                    fontStyle: "italic",
+                    marginTop: 10,
+                  }}
+                >
+                  {ed.degree} ({formatDate(ed.from)} - {formatDate(ed.to)})
+                </Text>
+                <View>
+                  <Text></Text>
+                </View>
+              </View>
+            </View>
+          ))}
+        </View>
       </Page>
     </Document>
   );
 }
+// {
+//   id: Date.now(),
+//   name: "IssatSousse",
+//   location: "Sousse",
+//   degree: "Computer Science",
+//   from: new Date(2022, 0, 20),
+//   to: addDays(new Date(2022, 0, 20), 20),
+// },
 
 export default Cv;
