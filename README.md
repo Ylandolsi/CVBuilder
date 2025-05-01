@@ -16,7 +16,6 @@ Follow these instructions to get the project running on your local machine.
 ## Features
 
 - User-friendly interface for building professional CVs
-- Customizable templates
 - Real-time preview
 - Export to PDF functionality
 - Responsive design
